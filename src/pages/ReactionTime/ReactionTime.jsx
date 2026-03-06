@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import TestShell from '../../components/shared/TestShell'
 import { useScores } from '../../context/ScoresContext'
 import { isBetter } from '../../lib/storage'
@@ -16,6 +16,18 @@ export default function ReactionTime() {
   const { scores, updateScore } = useScores()
 
   const pb = scores.reaction?.best
+  const handleClickRef = useRef(null)
+
+  useEffect(() => {
+    function handleKey(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        handleClickRef.current?.()
+      }
+    }
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [])
 
   function startTrial() {
     setPhase('waiting')
@@ -66,6 +78,8 @@ export default function ReactionTime() {
     }
   }
 
+  handleClickRef.current = handleClick
+
   const avg = trials.length > 0
     ? Math.round(trials.reduce((a, b) => a + b, 0) / trials.length)
     : null
@@ -75,7 +89,7 @@ export default function ReactionTime() {
   return (
     <TestShell
       title="Reaction Time"
-      description="When the screen turns green, click as fast as you can. 5 trials will be averaged."
+      description="When the screen turns green, click or press Space/Enter as fast as you can. 5 trials will be averaged."
     >
       <div
         className={`reaction-arena ${phase}`}
@@ -85,7 +99,7 @@ export default function ReactionTime() {
         {phase === 'idle' && (
           <>
             <div className="reaction-msg">Click to start</div>
-            <div className="reaction-sub">Wait for green, then click!</div>
+            <div className="reaction-sub">Wait for green, then click or press Space!</div>
           </>
         )}
 
@@ -94,7 +108,7 @@ export default function ReactionTime() {
         )}
 
         {phase === 'ready' && (
-          <div className="reaction-msg" style={{ color: '#0d1117' }}>Click!</div>
+          <div className="reaction-msg" style={{ color: '#0d1117' }}>Click or Space!</div>
         )}
 
         {phase === 'early' && (
@@ -107,7 +121,7 @@ export default function ReactionTime() {
         {phase === 'result' && (
           <>
             <div className="reaction-msg">{lastMs} ms</div>
-            <div className="reaction-sub">Trial {trials.length}/{TOTAL_TRIALS} — click for next</div>
+            <div className="reaction-sub">Trial {trials.length}/{TOTAL_TRIALS} — click or Space for next</div>
             <div className="reaction-trials">
               {Array.from({ length: TOTAL_TRIALS }, (_, i) => (
                 <div key={i} className={`trial-dot ${i < trials.length ? 'done' : ''}`} />
@@ -130,7 +144,7 @@ export default function ReactionTime() {
                 <div key={i} className="trial-dot done" title={`${t}ms`} />
               ))}
             </div>
-            <div className="reaction-sub" style={{ marginTop: 8 }}>Click to play again</div>
+            <div className="reaction-sub" style={{ marginTop: 8 }}>Click or press Space to play again</div>
           </>
         )}
       </div>
