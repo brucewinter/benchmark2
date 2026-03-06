@@ -3,7 +3,7 @@ import TestShell from '../../components/shared/TestShell'
 import { useScores } from '../../context/ScoresContext'
 import { isBetter } from '../../lib/storage'
 import { randInt } from '../../lib/utils'
-import { playClick, playDone } from '../../lib/sounds'
+import { playClick, playDone, playError } from '../../lib/sounds'
 
 const TOTAL_TARGETS = 30
 const TARGET_SIZE = 64
@@ -81,7 +81,7 @@ export default function AimTrainer() {
           <div style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 8 }}>
             Target {count} / {TOTAL_TARGETS}
           </div>
-          <div className="arena" ref={arenaRef}>
+          <div className="arena" ref={arenaRef} onClick={playError}>
             <div
               className="target-circle"
               style={{ left: pos.left, top: pos.top, width: TARGET_SIZE, height: TARGET_SIZE }}
