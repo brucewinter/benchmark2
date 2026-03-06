@@ -38,6 +38,9 @@ export default function Sidebar() {
           )
         })}
       </nav>
+      <div className="sidebar-version">
+        Built {new Date(__BUILD_TIME__).toLocaleString()}
+      </div>
     </aside>
   )
 }
