@@ -4,6 +4,7 @@ import TypingDisplay from './TypingDisplay'
 import { useScores } from '../../context/ScoresContext'
 import { isBetter } from '../../lib/storage'
 import { shuffle } from '../../lib/utils'
+import { playDone } from '../../lib/sounds'
 
 const DURATION_S = 60
 
@@ -57,6 +58,7 @@ export default function TypingTest() {
     setWpm(calculatedWpm)
     setAccuracy(acc)
     updateScore('typing', calculatedWpm)
+    playDone()
     setPhase('done')
   }
 

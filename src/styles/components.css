@@ -539,6 +539,106 @@
   border-color: var(--good);
 }
 
+/* ── History Section ── */
+.history-section {
+  margin-top: 48px;
+}
+
+.history-heading {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 12px;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.history-row {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.history-row-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.history-row-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.history-row-name {
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.history-row-last {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.history-row-last strong {
+  color: var(--accent);
+}
+
+.history-row-date {
+  margin-left: 8px;
+  opacity: 0.6;
+}
+
+.history-row-chart {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.history-row-runs {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ── Sparkline ── */
+.sparkline {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 36px;
+  width: 100px;
+}
+
+.spark-bar {
+  flex: 1;
+  min-width: 3px;
+  background: var(--accent);
+  border-radius: 2px 2px 0 0;
+  opacity: 0.7;
+  transition: opacity 120ms;
+}
+
+.spark-bar:hover {
+  opacity: 1;
+}
+
 /* ── Utility ── */
 .level-badge {
   font-size: 13px;

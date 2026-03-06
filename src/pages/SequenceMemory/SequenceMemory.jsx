@@ -4,6 +4,7 @@ import SequenceGrid from './SequenceGrid'
 import { useScores } from '../../context/ScoresContext'
 import { isBetter } from '../../lib/storage'
 import { randInt } from '../../lib/utils'
+import { playBeep, playSuccess, playLevelUp, playError } from '../../lib/sounds'
 
 const FLASH_ON_MS = 400
 const FLASH_GAP_MS = 700 // total time per step (on + off)
@@ -33,6 +34,7 @@ export default function SequenceMemory() {
 
     seq.forEach((tileIdx, step) => {
       const onId = setTimeout(() => {
+        playBeep()
         setFlashIndex(tileIdx)
       }, step * FLASH_GAP_MS + 600)
       timersRef.current.push(onId)
@@ -67,6 +69,7 @@ export default function SequenceMemory() {
       clearTimers()
       setWrongIndex(tileIdx)
       updateScore('sequence', level - 1)
+      playError()
       setPhase('gameover')
       return
     }
@@ -77,6 +80,7 @@ export default function SequenceMemory() {
       const nextSeq = [...sequence, randInt(0, 8)]
       setSequence(nextSeq)
       setLevel(nextSeq.length)
+      playLevelUp()
       setPhase('correct')
       const tid = setTimeout(() => {
         playSequence(nextSeq)

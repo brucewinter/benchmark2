@@ -3,6 +3,7 @@ import TestShell from '../../components/shared/TestShell'
 import { useScores } from '../../context/ScoresContext'
 import { isBetter } from '../../lib/storage'
 import { randInt } from '../../lib/utils'
+import { playClick, playDone } from '../../lib/sounds'
 
 const TOTAL_TARGETS = 30
 const TARGET_SIZE = 64
@@ -53,8 +54,10 @@ export default function AimTrainer() {
       const perTarget = Math.round(total / timesRef.current.length)
       setTotalMs(perTarget)
       updateScore('aim', perTarget)
+      playDone()
       setPhase('done')
     } else {
+      playClick()
       const dims = getArenaDims()
       setPos(randomPos(dims))
       setCount(nextCount)

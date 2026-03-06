@@ -2,6 +2,7 @@ import { useState, useRef, useCallback } from 'react'
 import TestShell from '../../components/shared/TestShell'
 import { useScores } from '../../context/ScoresContext'
 import { isBetter } from '../../lib/storage'
+import { playBeep, playClick, playError, playDone } from '../../lib/sounds'
 
 const TOTAL_TRIALS = 5
 
@@ -21,6 +22,7 @@ export default function ReactionTime() {
     const delay = 2000 + Math.random() * 4000
     timeoutRef.current = setTimeout(() => {
       startRef.current = performance.now()
+      playBeep()
       setPhase('ready')
     }, delay)
   }
@@ -35,6 +37,7 @@ export default function ReactionTime() {
 
     if (phase === 'waiting') {
       clearTimeout(timeoutRef.current)
+      playError()
       setPhase('early')
       return
     }
@@ -53,8 +56,10 @@ export default function ReactionTime() {
       if (newTrials.length >= TOTAL_TRIALS) {
         const avg = Math.round(newTrials.reduce((a, b) => a + b, 0) / newTrials.length)
         updateScore('reaction', avg)
+        playDone()
         setPhase('done')
       } else {
+        playClick()
         setPhase('result')
       }
       return

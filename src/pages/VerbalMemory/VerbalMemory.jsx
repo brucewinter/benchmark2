@@ -5,6 +5,7 @@ import { useScores } from '../../context/ScoresContext'
 import { isBetter } from '../../lib/storage'
 import { WORD_LIST } from '../../lib/wordList'
 import { shuffle } from '../../lib/utils'
+import { playClick, playError, playDone } from '../../lib/sounds'
 
 const MAX_LIVES = 3
 
@@ -55,8 +56,10 @@ export default function VerbalMemory() {
 
     if (correct) {
       newScore = score + 1
+      playClick()
     } else {
       newLives = lives - 1
+      playError()
     }
 
     // Add word to seen set regardless
@@ -67,6 +70,7 @@ export default function VerbalMemory() {
       setScore(newScore)
       setSeen(newSeen)
       setLives(0)
+      playDone()
       setPhase('gameover')
       return
     }

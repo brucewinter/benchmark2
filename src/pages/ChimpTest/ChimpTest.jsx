@@ -4,6 +4,7 @@ import ChimpGrid from './ChimpGrid'
 import { useScores } from '../../context/ScoresContext'
 import { isBetter } from '../../lib/storage'
 import { shuffle } from '../../lib/utils'
+import { playClick, playLevelUp, playError } from '../../lib/sounds'
 
 const COLS = 5
 const ROWS = 5
@@ -55,6 +56,7 @@ export default function ChimpTest() {
     if (cellValue === null) {
       // Clicked an empty cell — game over
       updateScore('chimp', level - 1 > 3 ? level - 1 : 3)
+      playError()
       setPhase('gameover')
       return
     }
@@ -62,6 +64,7 @@ export default function ChimpTest() {
     if (cellValue !== nextExpected) {
       // Wrong number
       updateScore('chimp', level - 1 > 3 ? level - 1 : 3)
+      playError()
       setPhase('gameover')
       return
     }
@@ -73,8 +76,10 @@ export default function ChimpTest() {
       // Round complete — advance level
       const nextLevel = level + 1
       setLevel(nextLevel)
+      playLevelUp()
       setTimeout(() => startRound(nextLevel), 800)
     } else {
+      playClick()
       setNextExpected(cellValue + 1)
     }
   }

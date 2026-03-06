@@ -5,6 +5,7 @@ import LivesDisplay from '../../components/shared/LivesDisplay'
 import { useScores } from '../../context/ScoresContext'
 import { isBetter } from '../../lib/storage'
 import { shuffle } from '../../lib/utils'
+import { playClick, playLevelUp, playError, playDone } from '../../lib/sounds'
 
 const MAX_LIVES = 3
 const REVEAL_MS = 3000
@@ -74,16 +75,21 @@ export default function VisualMemory() {
         // Round complete!
         const newScore = score + 1
         setScore(newScore)
+        playLevelUp()
         timeoutRef.current = setTimeout(() => {
           startRound(newScore, lives)
         }, 800)
+      } else {
+        playClick()
       }
     } else {
       // Wrong tile
+      playError()
       const newLives = lives - 1
       setLives(newLives)
       if (newLives <= 0) {
         updateScore('visual', score)
+        playDone()
         setPhase('gameover')
       } else {
         // Show mistake briefly then restart same round

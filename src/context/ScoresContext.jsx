@@ -1,12 +1,21 @@
 import { createContext, useContext, useState } from 'react'
 import { loadScores, saveScores, isBetter } from '../lib/storage'
+import { loadHistory, saveHistory, addHistoryEntry } from '../lib/history'
 
 const ScoresContext = createContext(null)
 
 export function ScoresProvider({ children }) {
   const [scores, setScores] = useState(() => loadScores())
+  const [history, setHistory] = useState(() => loadHistory())
 
   function updateScore(testId, newVal) {
+    // Always record to history
+    setHistory(prev => {
+      const next = addHistoryEntry(prev, testId, newVal)
+      saveHistory(next)
+      return next
+    })
+    // Update best if better
     setScores(prev => {
       const current = prev[testId]?.best
       if (!isBetter(testId, newVal, current)) return prev
@@ -17,7 +26,7 @@ export function ScoresProvider({ children }) {
   }
 
   return (
-    <ScoresContext.Provider value={{ scores, updateScore }}>
+    <ScoresContext.Provider value={{ scores, updateScore, history }}>
       {children}
     </ScoresContext.Provider>
   )

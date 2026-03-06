@@ -82,8 +82,39 @@ const TESTS = [
   },
 ]
 
+function Sparkline({ entries, lowerBetter }) {
+  if (entries.length < 2) return null
+  const values = entries.map(e => e.score)
+  const min = Math.min(...values)
+  const max = Math.max(...values)
+  const range = max - min || 1
+  return (
+    <div className="sparkline">
+      {entries.map((e, i) => {
+        const norm = (e.score - min) / range
+        const heightPct = Math.max(lowerBetter ? (1 - norm) * 100 : norm * 100, 8)
+        return (
+          <div
+            key={i}
+            className="spark-bar"
+            style={{ height: `${heightPct}%` }}
+            title={`${e.score}`}
+          />
+        )
+      })}
+    </div>
+  )
+}
+
+function formatDate(ts) {
+  const d = new Date(ts)
+  return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+}
+
 export default function Dashboard() {
-  const { scores } = useScores()
+  const { scores, history } = useScores()
+
+  const testsWithHistory = TESTS.filter(t => history[t.id]?.length > 0)
 
   return (
     <div className="dashboard">
@@ -91,6 +122,7 @@ export default function Dashboard() {
         <h1>Human Benchmark</h1>
         <p>Test your cognitive abilities with these 8 challenges.</p>
       </div>
+
       <div className="tests-grid">
         {TESTS.map(t => {
           const best = scores[t.id]?.best
@@ -108,6 +140,37 @@ export default function Dashboard() {
           )
         })}
       </div>
+
+      {testsWithHistory.length > 0 && (
+        <div className="history-section">
+          <h2 className="history-heading">Recent History</h2>
+          <div className="history-list">
+            {testsWithHistory.map(t => {
+              const entries = history[t.id]
+              const recent = entries.slice(-20)
+              const last = entries[entries.length - 1]
+              return (
+                <div key={t.id} className="history-row">
+                  <div className="history-row-meta">
+                    <span className="history-row-icon">{t.icon}</span>
+                    <div>
+                      <div className="history-row-name">{t.name}</div>
+                      <div className="history-row-last">
+                        Latest: <strong>{last.score}{t.unit}{t.label ? ' ' + t.label : ''}</strong>
+                        <span className="history-row-date">{formatDate(last.ts)}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="history-row-chart">
+                    <Sparkline entries={recent} lowerBetter={t.lowerBetter} />
+                    <div className="history-row-runs">{entries.length} run{entries.length !== 1 ? 's' : ''}</div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

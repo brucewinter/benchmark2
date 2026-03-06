@@ -3,6 +3,7 @@ import TestShell from '../../components/shared/TestShell'
 import { useScores } from '../../context/ScoresContext'
 import { isBetter } from '../../lib/storage'
 import { generateNumber } from '../../lib/utils'
+import { playLevelUp, playError } from '../../lib/sounds'
 
 // phase: idle | showing | input | correct | gameover
 export default function NumberMemory() {
@@ -48,6 +49,7 @@ export default function NumberMemory() {
       const nextLevel = level + 1
       setBestLevel(level)
       setLevel(nextLevel)
+      playLevelUp()
       setPhase('correct')
       timeoutRef.current = setTimeout(() => {
         startLevel(nextLevel)
@@ -55,6 +57,7 @@ export default function NumberMemory() {
     } else {
       updateScore('number', level - 1 > 0 ? level - 1 : 0)
       setBestLevel(level - 1)
+      playError()
       setPhase('gameover')
     }
   }
