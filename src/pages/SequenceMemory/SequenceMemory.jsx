@@ -63,6 +63,7 @@ export default function SequenceMemory() {
 
   function handleTileClick(tileIdx) {
     if (phase !== 'input') return
+    if (flashIndex !== null) return  // block clicks during flash
 
     const expected = sequence[userIndex]
     if (tileIdx !== expected) {
@@ -74,21 +75,29 @@ export default function SequenceMemory() {
       return
     }
 
+    // Flash and beep the clicked tile
+    playBeep()
+    setFlashIndex(tileIdx)
+
     const nextIndex = userIndex + 1
-    if (nextIndex >= sequence.length) {
-      // Completed the sequence
-      const nextSeq = [...sequence, randInt(0, 8)]
-      setSequence(nextSeq)
-      setLevel(nextSeq.length)
-      playLevelUp()
-      setPhase('correct')
-      const tid = setTimeout(() => {
-        playSequence(nextSeq)
-      }, 800)
-      timersRef.current.push(tid)
-    } else {
-      setUserIndex(nextIndex)
-    }
+    const tid = setTimeout(() => {
+      setFlashIndex(null)
+      if (nextIndex >= sequence.length) {
+        // Completed the sequence
+        const nextSeq = [...sequence, randInt(0, 8)]
+        setSequence(nextSeq)
+        setLevel(nextSeq.length)
+        playLevelUp()
+        setPhase('correct')
+        const tid2 = setTimeout(() => {
+          playSequence(nextSeq)
+        }, 800)
+        timersRef.current.push(tid2)
+      } else {
+        setUserIndex(nextIndex)
+      }
+    }, FLASH_ON_MS)
+    timersRef.current.push(tid)
   }
 
   const isNewBest = phase === 'gameover' && isBetter('sequence', level - 1, pb)
