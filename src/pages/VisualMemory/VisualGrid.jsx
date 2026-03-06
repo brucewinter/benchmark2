@@ -2,7 +2,7 @@ export default function VisualGrid({ size, highlighted, picked, phase, onTileCli
   return (
     <div
       className="vis-grid"
-      style={{ gridTemplateColumns: `repeat(${size}, 80px)` }}
+      style={{ gridTemplateColumns: `repeat(${size}, 110px)` }}
     >
       {Array.from({ length: size * size }, (_, i) => {
         let cls = 'vis-tile'

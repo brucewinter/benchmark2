@@ -39,7 +39,8 @@ export default function Sidebar() {
         })}
       </nav>
       <div className="sidebar-version">
-        Built {new Date(__BUILD_TIME__).toLocaleString()}
+        <div>Built {new Date(__BUILD_TIME__).toLocaleString()}</div>
+        <div>commit {__GIT_HASH__}</div>
       </div>
     </aside>
   )
