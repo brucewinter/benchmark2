@@ -113,7 +113,7 @@ export default function TypingTest() {
       description="Type the text below as fast and accurately as you can. Timer starts on first keystroke."
     >
       {phase !== 'done' && (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, width: '100%', maxWidth: 700 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, width: '100%', maxWidth: 960 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: 14, color: 'var(--text-muted)' }}>
             <span>Time: <strong style={{ color: phase === 'running' && timeLeft <= 10 ? 'var(--bad)' : 'var(--text)' }}>{timeLeft}s</strong></span>
             <span>Characters: {typed.length}</span>

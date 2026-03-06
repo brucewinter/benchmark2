@@ -62,7 +62,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px;
+  padding: 24px 40px;
   min-height: 100%;
 }
 
@@ -89,7 +89,7 @@
   font-size: 14px;
   color: var(--text-muted);
   text-align: center;
-  max-width: 480px;
+  max-width: 700px;
   margin-bottom: 32px;
 }
 
@@ -237,8 +237,8 @@
 .arena {
   position: relative;
   width: 100%;
-  max-width: 700px;
-  height: 420px;
+  max-width: none;
+  height: min(65vh, 600px);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -262,14 +262,14 @@
 /* ── Sequence Grid ── */
 .seq-grid {
   display: grid;
-  grid-template-columns: repeat(3, 80px);
-  grid-template-rows: repeat(3, 80px);
-  gap: 8px;
+  grid-template-columns: repeat(3, 120px);
+  grid-template-rows: repeat(3, 120px);
+  gap: 10px;
 }
 
 .seq-tile {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   border-radius: 10px;
   background: var(--surface-2);
   border: 2px solid var(--border);
@@ -304,8 +304,8 @@
 }
 
 .vis-tile {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   border-radius: 8px;
   background: var(--surface-2);
   border: 2px solid var(--border);
@@ -335,16 +335,16 @@
 }
 
 .chimp-cell {
-  width: 72px;
-  height: 72px;
-  border-radius: 8px;
+  width: 96px;
+  height: 96px;
+  border-radius: 10px;
   background: var(--surface-2);
   border: 2px solid var(--border);
   cursor: default;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 26px;
   font-weight: 700;
   transition: background 80ms;
   user-select: none;
@@ -379,7 +379,7 @@
 .typing-prompt {
   font-size: 22px;
   line-height: 1.7;
-  max-width: 700px;
+  max-width: 960px;
   width: 100%;
   word-break: break-word;
   letter-spacing: 0.02em;
@@ -392,7 +392,7 @@
 
 .typing-input {
   width: 100%;
-  max-width: 700px;
+  max-width: 960px;
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -411,7 +411,7 @@
 /* ── Progress Bar ── */
 .progress-bar-wrap {
   width: 100%;
-  max-width: 700px;
+  max-width: 960px;
   height: 6px;
   background: var(--surface-2);
   border-radius: 3px;
@@ -427,7 +427,7 @@
 
 /* ── Number Memory ── */
 .number-display {
-  font-size: 64px;
+  font-size: 80px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-align: center;
@@ -446,7 +446,7 @@
   border-radius: 10px;
   padding: 12px 24px;
   color: var(--text);
-  width: 280px;
+  width: 360px;
   outline: none;
   letter-spacing: 0.15em;
 }
@@ -489,8 +489,8 @@
 /* ── Reaction Time ── */
 .reaction-arena {
   width: 100%;
-  max-width: 700px;
-  height: 360px;
+  max-width: none;
+  height: min(60vh, 520px);
   border-radius: 16px;
   display: flex;
   flex-direction: column;

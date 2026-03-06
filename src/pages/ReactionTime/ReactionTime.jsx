@@ -80,7 +80,7 @@ export default function ReactionTime() {
       <div
         className={`reaction-arena ${phase}`}
         onClick={handleClick}
-        style={{ width: '100%', maxWidth: 700 }}
+        style={{ width: '100%' }}
       >
         {phase === 'idle' && (
           <>
