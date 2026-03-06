@@ -2,5 +2,5 @@ services:
   benchmark2:
     build: .
     ports:
-      - "3000:80"
+      - "5173:80"
     restart: unless-stopped

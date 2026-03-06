@@ -5,7 +5,8 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY . .
-RUN git config --global --add safe.directory /app && npm run build
+RUN git config --global --add safe.directory /app
+RUN echo "Building commit: $(git rev-parse --short HEAD)" && npm run build
 
 # Stage 2: serve with nginx
 FROM nginx:alpine
