@@ -1,0 +1,572 @@
+/* ── Shared Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: opacity 150ms, transform 80ms;
+  user-select: none;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #0d1117;
+}
+
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
+.btn-secondary {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--surface);
+}
+
+.btn-good {
+  background: var(--good);
+  color: #0d1117;
+}
+
+.btn-bad {
+  background: var(--bad);
+  color: #fff;
+}
+
+.btn-lg {
+  padding: 14px 36px;
+  font-size: 17px;
+  border-radius: 10px;
+}
+
+/* ── Test Shell ── */
+.test-shell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  min-height: 100%;
+}
+
+.test-shell-back {
+  align-self: flex-start;
+  margin-bottom: 24px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.test-shell-back:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.test-title {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.test-description {
+  font-size: 14px;
+  color: var(--text-muted);
+  text-align: center;
+  max-width: 480px;
+  margin-bottom: 32px;
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+/* ── Dashboard ── */
+.dashboard {
+  padding: 40px 32px;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.dashboard-hero {
+  margin-bottom: 40px;
+}
+
+.dashboard-hero h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.dashboard-hero p {
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.tests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.test-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 150ms, background 150ms;
+}
+
+.test-card:hover {
+  border-color: var(--accent);
+  background: var(--surface-2);
+  text-decoration: none;
+}
+
+.test-card-icon {
+  font-size: 28px;
+  margin-bottom: 4px;
+}
+
+.test-card-name {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.test-card-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.test-card-score {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.test-card-score span {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ── Result Screen ── */
+.result-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.result-score {
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text);
+}
+
+.result-unit {
+  font-size: 22px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.result-label {
+  font-size: 16px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.result-pb {
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.result-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ── Lives ── */
+.lives-display {
+  display: flex;
+  gap: 6px;
+  font-size: 20px;
+}
+
+/* ── Game Arena (Aim Trainer) ── */
+.arena {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  height: 420px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.target-circle {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--target-color);
+  cursor: pointer;
+  transition: transform 80ms;
+}
+
+.target-circle:hover {
+  transform: scale(1.08);
+}
+
+/* ── Sequence Grid ── */
+.seq-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  grid-template-rows: repeat(3, 80px);
+  gap: 8px;
+}
+
+.seq-tile {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 2px solid var(--border);
+  cursor: pointer;
+  transition: background 80ms, border-color 80ms;
+}
+
+.seq-tile.flash {
+  background: var(--tile-on);
+  border-color: var(--tile-on);
+}
+
+.seq-tile.correct {
+  background: var(--good);
+  border-color: var(--good);
+}
+
+.seq-tile.wrong {
+  background: var(--bad);
+  border-color: var(--bad);
+}
+
+.seq-tile:hover:not(.flash) {
+  background: var(--surface);
+  border-color: var(--accent);
+}
+
+/* ── Visual Memory Grid ── */
+.vis-grid {
+  display: grid;
+  gap: 6px;
+}
+
+.vis-tile {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  border: 2px solid var(--border);
+  cursor: pointer;
+  transition: background 120ms, border-color 120ms;
+}
+
+.vis-tile.highlighted {
+  background: var(--tile-on);
+  border-color: var(--tile-on);
+}
+
+.vis-tile.picked-correct {
+  background: var(--tile-pick);
+  border-color: var(--tile-pick);
+}
+
+.vis-tile.picked-wrong {
+  background: var(--tile-wrong);
+  border-color: var(--tile-wrong);
+}
+
+/* ── Chimp Grid ── */
+.chimp-grid {
+  display: grid;
+  gap: 6px;
+}
+
+.chimp-cell {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  border: 2px solid var(--border);
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  transition: background 80ms;
+  user-select: none;
+}
+
+.chimp-cell.populated {
+  background: var(--chimp-show);
+  border-color: var(--chimp-show);
+  color: #0d1117;
+  cursor: pointer;
+}
+
+.chimp-cell.hidden-populated {
+  background: var(--surface-2);
+  border-color: var(--border);
+  color: transparent;
+  cursor: pointer;
+}
+
+.chimp-cell.correct-pick {
+  background: var(--good);
+  border-color: var(--good);
+  color: #0d1117;
+  cursor: default;
+}
+
+.chimp-cell.empty {
+  cursor: pointer;
+}
+
+/* ── Typing ── */
+.typing-prompt {
+  font-size: 22px;
+  line-height: 1.7;
+  max-width: 700px;
+  width: 100%;
+  word-break: break-word;
+  letter-spacing: 0.02em;
+}
+
+.typing-prompt .char-correct { color: var(--good); }
+.typing-prompt .char-wrong   { color: var(--bad); text-decoration: underline; }
+.typing-prompt .char-untyped { color: var(--text-muted); }
+.typing-prompt .char-cursor  { border-left: 2px solid var(--accent); }
+
+.typing-input {
+  width: 100%;
+  max-width: 700px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--text);
+  font-size: 16px;
+  resize: none;
+  outline: none;
+  transition: border-color 150ms;
+}
+
+.typing-input:focus {
+  border-color: var(--accent);
+}
+
+/* ── Progress Bar ── */
+.progress-bar-wrap {
+  width: 100%;
+  max-width: 700px;
+  height: 6px;
+  background: var(--surface-2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+  transition: width 1s linear;
+}
+
+/* ── Number Memory ── */
+.number-display {
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: var(--text);
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.number-input {
+  font-size: 32px;
+  text-align: center;
+  background: var(--surface-2);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 24px;
+  color: var(--text);
+  width: 280px;
+  outline: none;
+  letter-spacing: 0.15em;
+}
+
+.number-input:focus {
+  border-color: var(--accent);
+}
+
+/* ── Verbal Memory ── */
+.verbal-word {
+  font-size: 48px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--text);
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.verbal-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.verbal-stats {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.verbal-stats .stat-val {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  display: block;
+}
+
+/* ── Reaction Time ── */
+.reaction-arena {
+  width: 100%;
+  max-width: 700px;
+  height: 360px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  transition: background 200ms;
+  gap: 12px;
+}
+
+.reaction-arena.idle     { background: var(--surface); border: 2px solid var(--border); }
+.reaction-arena.waiting  { background: var(--reaction-wait); }
+.reaction-arena.ready    { background: var(--reaction-go); }
+.reaction-arena.early    { background: var(--reaction-early); }
+.reaction-arena.result   { background: var(--surface); border: 2px solid var(--border); }
+
+.reaction-msg {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.reaction-sub {
+  font-size: 15px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.reaction-trials {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.trial-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 2px solid var(--border);
+}
+
+.trial-dot.done {
+  background: var(--good);
+  border-color: var(--good);
+}
+
+/* ── Utility ── */
+.level-badge {
+  font-size: 13px;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 3px 12px;
+}
+
+.score-row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.score-box {
+  text-align: center;
+}
+
+.score-box .val {
+  font-size: 36px;
+  font-weight: 700;
+  display: block;
+}
+
+.score-box .lbl {
+  font-size: 12px;
+  color: var(--text-muted);
+}

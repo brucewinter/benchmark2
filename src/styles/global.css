@@ -1,0 +1,62 @@
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --surface-2: #21262d;
+  --border: #30363d;
+  --text: #e6edf3;
+  --text-muted: #7d8590;
+  --accent: #58a6ff;
+  --accent-soft: #1c2e4a;
+  --good: #3fb950;
+  --warn: #d29922;
+  --bad: #f85149;
+
+  --reaction-wait: #d29922;
+  --reaction-go: #3fb950;
+  --reaction-early: #f85149;
+
+  --tile-on: #58a6ff;
+  --tile-pick: #3fb950;
+  --tile-wrong: #f85149;
+  --target-color: #f85149;
+  --chimp-show: #58a6ff;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+input {
+  font-family: inherit;
+  font-size: inherit;
+}
