@@ -11,8 +11,8 @@ const MAX_LIVES = 3
 
 function pickNextWord(seen, pool, usedAll) {
   const seenArr = [...seen]
-  // 55% chance to show a previously seen word (if any exist)
-  if (seenArr.length > 0 && Math.random() < 0.55) {
+  // 30% chance to show a previously seen word (if any exist)
+  if (seenArr.length > 0 && Math.random() < 0.30) {
     return { word: seenArr[Math.floor(Math.random() * seenArr.length)], isNew: false }
   }
   // show a new word from the pool

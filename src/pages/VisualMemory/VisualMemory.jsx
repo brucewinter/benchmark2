@@ -11,11 +11,11 @@ const MAX_LIVES = 3
 const REVEAL_MS = 3000
 
 function getGridSize(score) {
-  return 3 + Math.floor(score / 3)
+  return 5 + Math.floor(score / 3)
 }
 
 function getHighlightCount(score, size) {
-  return Math.min(3 + Math.floor(score / 2), size * size - 2)
+  return Math.min(5 + Math.floor(score / 2), size * size - 2)
 }
 
 function buildPattern(size, count) {
