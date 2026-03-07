@@ -6,7 +6,7 @@ import { isBetter } from '../../lib/storage'
 import { shuffle } from '../../lib/utils'
 import { playDone } from '../../lib/sounds'
 
-const DURATION_S = 60
+const DURATION_S = 30
 
 const WORDS = [
   'the', 'quick', 'brown', 'fox', 'jumps', 'over', 'lazy', 'dog', 'a', 'pack',
@@ -27,7 +27,7 @@ const WORDS = [
 ]
 
 function generatePrompt() {
-  const words = shuffle([...WORDS]).slice(0, 60)
+  const words = shuffle([...WORDS]).slice(0, 30)
   return words.join(' ')
 }
 
@@ -110,7 +110,7 @@ export default function TypingTest() {
   return (
     <TestShell
       title="Typing Test"
-      description="Type the text below as fast and accurately as you can. Timer starts on first keystroke."
+      description="Type the text below as fast and accurately as you can. 30 second timer starts on first keystroke."
     >
       {phase !== 'done' && (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, width: '100%', maxWidth: 960 }}>

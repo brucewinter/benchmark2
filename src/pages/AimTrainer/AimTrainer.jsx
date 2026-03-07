@@ -6,7 +6,7 @@ import { randInt } from '../../lib/utils'
 import { playClick, playDone, playError } from '../../lib/sounds'
 
 const TOTAL_TARGETS = 30
-const TARGET_SIZE = 64
+const TARGET_SIZE = 128
 
 function randomPos(arenaDims) {
   return {
