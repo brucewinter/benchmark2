@@ -42,6 +42,7 @@ export default function TypingTest() {
   const startTimeRef = useRef(null)
   const intervalRef = useRef(null)
   const textareaRef = useRef(null)
+  const typedRef = useRef('')
   const { scores, updateScore } = useScores()
   const pb = scores.typing?.best
 
@@ -74,13 +75,13 @@ export default function TypingTest() {
         const remaining = Math.max(0, DURATION_S - elapsed)
         setTimeLeft(Math.ceil(remaining))
         if (remaining <= 0) {
-          setTyped(val)
-          endGame(val, DURATION_S)
+          endGame(typedRef.current, DURATION_S)
         }
       }, 200)
       setPhase('running')
     }
 
+    typedRef.current = val
     setTyped(val)
 
     // Finished prompt early
