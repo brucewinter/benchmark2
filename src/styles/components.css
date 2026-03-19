@@ -236,13 +236,14 @@
 /* ── Game Arena (Aim Trainer) ── */
 .arena {
   position: relative;
-  width: 100%;
+  width: 50%;
   max-width: none;
   height: min(65vh, 600px);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
+  align-self: center;
 }
 
 .target-circle {

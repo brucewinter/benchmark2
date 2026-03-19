@@ -6,8 +6,8 @@ import { isBetter } from '../../lib/storage'
 import { randInt } from '../../lib/utils'
 import { playBeep, playSuccess, playLevelUp, playError } from '../../lib/sounds'
 
-const FLASH_ON_MS = 400
-const FLASH_GAP_MS = 700 // total time per step (on + off)
+const FLASH_ON_MS = 200
+const FLASH_GAP_MS = 350 // total time per step (on + off)
 
 // phase: idle | showing | input | correct | gameover
 export default function SequenceMemory() {
@@ -36,19 +36,19 @@ export default function SequenceMemory() {
       const onId = setTimeout(() => {
         playBeep()
         setFlashIndex(tileIdx)
-      }, step * FLASH_GAP_MS + 600)
+      }, step * FLASH_GAP_MS + 300)
       timersRef.current.push(onId)
 
       const offId = setTimeout(() => {
         setFlashIndex(null)
-      }, step * FLASH_GAP_MS + 600 + FLASH_ON_MS)
+      }, step * FLASH_GAP_MS + 300 + FLASH_ON_MS)
       timersRef.current.push(offId)
     })
 
     const doneId = setTimeout(() => {
       setPhase('input')
       setUserIndex(0)
-    }, seq.length * FLASH_GAP_MS + 800)
+    }, seq.length * FLASH_GAP_MS + 400)
     timersRef.current.push(doneId)
   }
 
@@ -88,7 +88,7 @@ export default function SequenceMemory() {
       setLevel(nextSeq.length)
       playLevelUp()
       setPhase('correct')
-      const tid = setTimeout(() => playSequence(nextSeq), 800)
+      const tid = setTimeout(() => playSequence(nextSeq), 400)
       timersRef.current.push(tid)
     } else {
       setUserIndex(nextIndex)
