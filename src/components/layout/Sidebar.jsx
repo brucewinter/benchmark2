@@ -3,13 +3,13 @@ import { useScores } from '../../context/ScoresContext'
 
 const TESTS = [
   { id: 'reaction', path: '/reaction', label: 'Reaction Time', unit: 'ms', lowerBetter: true },
-  { id: 'sequence', path: '/sequence', label: 'Sequence Memory', unit: '' },
-  { id: 'number',   path: '/number',   label: 'Number Memory', unit: '' },
-  { id: 'aim',      path: '/aim',      label: 'Aim Trainer', unit: 'ms', lowerBetter: true },
   { id: 'visual',   path: '/visual',   label: 'Visual Memory', unit: '' },
-  { id: 'chimp',    path: '/chimp',    label: 'Chimp Test', unit: '' },
+  { id: 'number',   path: '/number',   label: 'Number Memory', unit: '' },
   { id: 'verbal',   path: '/verbal',   label: 'Verbal Memory', unit: '' },
   { id: 'typing',   path: '/typing',   label: 'Typing Test', unit: 'WPM' },
+  { id: 'aim',      path: '/aim',      label: 'Aim Trainer', unit: 'ms', lowerBetter: true },
+  { id: 'chimp',    path: '/chimp',    label: 'Chimp Test', unit: '' },
+  { id: 'sequence', path: '/sequence', label: 'Sequence Memory', unit: '' },
 ]
 
 export default function Sidebar() {

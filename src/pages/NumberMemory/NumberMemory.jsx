@@ -22,7 +22,7 @@ export default function NumberMemory() {
     setNumber(num)
     setInput('')
     setPhase('showing')
-    const displayMs = 900 + lvl * 260
+    const displayMs = 1800 + lvl * 520
     timeoutRef.current = setTimeout(() => {
       setPhase('input')
     }, displayMs)

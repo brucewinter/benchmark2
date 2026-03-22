@@ -89,7 +89,7 @@ export default function ChimpTest() {
   return (
     <TestShell
       title="Chimp Test"
-      description="Numbers will appear briefly on the grid. Click them in order (1, 2, 3...) after they disappear. Numbers hide when you click the first one."
+      description="Click the numbers in order. When you click the first one, they disappear — but the tiles remain. Can you remember where each number was?"
     >
       {phase === 'idle' && (
         <button className="btn btn-primary btn-lg" onClick={startGame}>Start</button>
@@ -131,7 +131,7 @@ export default function ChimpTest() {
             </div>
           )}
           <div className="result-actions">
-            <button className="btn btn-primary" onClick={startGame}>Try Again</button>
+            <button className="btn btn-primary" onClick={() => startRound(level)}>Try Again</button>
             <a href="/" className="btn btn-secondary">Home</a>
           </div>
         </div>

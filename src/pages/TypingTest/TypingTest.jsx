@@ -3,32 +3,25 @@ import TestShell from '../../components/shared/TestShell'
 import TypingDisplay from './TypingDisplay'
 import { useScores } from '../../context/ScoresContext'
 import { isBetter } from '../../lib/storage'
-import { shuffle } from '../../lib/utils'
 import { playDone } from '../../lib/sounds'
 
 const DURATION_S = 30
 
-const WORDS = [
-  'the', 'quick', 'brown', 'fox', 'jumps', 'over', 'lazy', 'dog', 'a', 'pack',
-  'of', 'gray', 'wolves', 'had', 'been', 'roaming', 'through', 'forest', 'all',
-  'morning', 'searching', 'for', 'prey', 'when', 'they', 'finally', 'spotted',
-  'herd', 'deer', 'resting', 'near', 'stream', 'still', 'water', 'reflected',
-  'towering', 'pine', 'trees', 'above', 'soft', 'light', 'filtering', 'down',
-  'leaves', 'cast', 'dancing', 'shadows', 'on', 'ground', 'below', 'cool',
-  'breeze', 'carried', 'scent', 'rain', 'distant', 'mountains', 'clouds',
-  'gathered', 'horizon', 'promising', 'storm', 'thunder', 'rumbled', 'low',
-  'warning', 'creatures', 'take', 'shelter', 'before', 'night', 'fell',
-  'bright', 'stars', 'would', 'hidden', 'thick', 'blanket', 'dark', 'sky',
-  'long', 'road', 'stretched', 'ahead', 'travelers', 'weary', 'but', 'determined',
-  'reach', 'destination', 'before', 'gates', 'closed', 'ancient', 'city',
-  'stone', 'walls', 'high', 'guard', 'towers', 'stood', 'silent', 'sentinels',
-  'watching', 'every', 'movement', 'plain', 'below', 'merchants', 'hurried',
-  'carts', 'loaded', 'goods', 'from', 'distant', 'lands', 'spices', 'silk',
+const PASSAGES = [
+  'The sun had barely risen when she stepped outside to find the garden covered in a thin layer of frost. Each blade of grass sparkled like a tiny crystal, and her breath formed small clouds in the cold morning air. She pulled her coat tighter and walked slowly along the path.',
+  'He had always believed that the best ideas came to him in the shower. Something about the warm water and the white noise of the spray helped his mind wander freely. Today was no different, and by the time he reached for the towel, he had a plan.',
+  'The old library smelled of wood polish and paper, a scent that she had loved since childhood. She ran her fingers along the spines of the books as she walked between the shelves, searching for something she had not yet decided on.',
+  'Every morning he made the same breakfast: two eggs scrambled, toast with butter, and a cup of black coffee. The routine was not exciting, but it gave him a sense of control before the unpredictable hours of the workday began.',
+  'The train moved through the countryside at a steady pace, passing green fields, stone farmhouses, and the occasional cluster of trees. She watched the landscape scroll by and tried to remember the last time she had traveled somewhere just for the pleasure of it.',
+  'There is a kind of courage required to admit that you were wrong. It is easier to double down, to find new arguments, to shift the terms of the debate. But the person who can say those three simple words earns something that cannot be taken away.',
+  'The market was crowded by mid-morning, with vendors calling out prices and shoppers moving between the stalls. The smell of fresh bread mingled with that of roasting nuts and ripe fruit, and the sound of conversation rose and fell like a tide.',
+  'She had lived in the city for ten years without ever visiting the botanical garden on the north side of the park. One rainy Tuesday she finally went, and she spent two hours there, moving slowly through the glass houses, forgetting the world outside.',
+  'The instructions looked simple enough on paper, but after thirty minutes he had parts left over and the shelf was still wobbling. He sat back on his heels and stared at the diagram, certain that the problem was not with him but with whoever had drawn it.',
+  'Learning to type well is one of those skills that pays dividends for decades. The time you invest in proper technique and speed is returned to you many times over in every email, document, and message you write for the rest of your life.',
 ]
 
 function generatePrompt() {
-  const words = shuffle([...WORDS]).slice(0, 30)
-  return words.join(' ')
+  return PASSAGES[Math.floor(Math.random() * PASSAGES.length)]
 }
 
 // phase: idle | running | done
